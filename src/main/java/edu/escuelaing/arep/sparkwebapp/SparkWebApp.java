@@ -10,13 +10,13 @@ import static spark.Spark.*;
 
 public class SparkWebApp {
     public static void main(String[] args) throws IOException {
-        System.out.println("00000000000000000000000000000000000000000000");
+
         port(getPort());
-        System.out.println("1");
+
         get("/", (req, res) -> inputData(req, res));
-        System.out.println("2");
+
         get("/results", (req, res) -> results(req, res));
-        System.out.println("3");
+
         post("/info", (request, response) -> {
             Todo tarea = new Todo(request.body());
             String str= tarea.sort();
