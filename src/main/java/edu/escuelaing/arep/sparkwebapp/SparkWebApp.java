@@ -11,7 +11,7 @@ import static spark.Spark.*;
 public class SparkWebApp {
     public static void main(String[] args) throws IOException {
         port(getPort());     
-        get("/input", (req, res) -> inputData(req, res));
+        get("/", (req, res) -> inputData(req, res));
         get("/results", (req, res) -> results(req, res));
         post("/info", (request, response) -> {
             Todo tarea = new Todo(request.body());
