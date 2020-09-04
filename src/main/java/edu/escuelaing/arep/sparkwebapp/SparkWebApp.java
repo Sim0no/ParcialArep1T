@@ -10,19 +10,14 @@ import static spark.Spark.*;
 
 public class SparkWebApp {
     public static void main(String[] args) throws IOException {
-
-        port(getPort());
-
+        port(getPort());     
         get("/", (req, res) -> inputData(req, res));
-
         get("/results", (req, res) -> results(req, res));
-
         post("/info", (request, response) -> {
             Todo tarea = new Todo(request.body());
             String str= tarea.sort();
             LinkedList<Double> lista = tarea.getArray();
-            return "{\"Lista Ordenada\":" +str + ", \"Sumatoria\":" + tarea.suma(lista) +", \"Promedio\":" + tarea.mean(lista) + "}";
-
+            return "{\"Lista\":"+str+ ", \"Promedio\":"+tarea.mean(lista) +", \"Sumatoria\":"+ tarea.suma(lista) + "}";
 
         });
     }
@@ -41,7 +36,7 @@ public class SparkWebApp {
                 = "<!DOCTYPE html>"
                 + "<html>"
                 + "<body>"
-                + "<h2>Ingrese el arreglo separado por comas</h2>"
+                + "<h2>INGRESE LOS DATOS SEPARADOS POR UNA COMA</h2>"
                 + "<form action=\"/results\">"
                 + "  lista:<br>"
                 + "  <input type=\"text\" name=\"lista\" value=>"
@@ -49,11 +44,14 @@ public class SparkWebApp {
                 + "  <br>"
                 + "  <input type=\"submit\" value=\"Submit\">"
                 + "</form>"
+                + "<p>If you click the \"Submit\" button, the form-data will be sent to a page called \"/results\".</p>"
                 + "</body>"
                 + "</html>";
         return pageContent;
      }
     private static String results(Request req, Response res) {
+        System.out.println("HOLAA!");
+        System.out.println("equisde");
         Todo a= new Todo(req.queryParams("lista"));
         //System.out.println(a.sort());
         String pageContent

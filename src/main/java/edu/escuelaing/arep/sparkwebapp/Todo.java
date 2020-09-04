@@ -15,8 +15,8 @@ public class Todo {
 
     private static LinkedList<Double> array;
     private String [] recibido;
-
-
+    
+    
     public Todo(String arreglo) {
         array = new LinkedList<>();
         String[] mData = arreglo.split(",");
@@ -25,9 +25,10 @@ public class Todo {
             array.add(value);
         }
     }
-    public String sort(){
+    public static String sort(){
         LinkedList.bubbleSort(array);
         String ans=new String("");
+        System.out.println("jjejeje");
 
         int n = array.getSize();
         for (int i=0; i<n; ++i){
